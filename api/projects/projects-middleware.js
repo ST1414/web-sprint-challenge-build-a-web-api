@@ -19,7 +19,7 @@ function validateProjectID (req, res, next){
 
 function validateProject (req, res, next){
     // - If the request body is missing any of the required fields it responds with a status code 400.
-    if (!req.body.name || !req.body.description || !req.body.completed){
+    if (!req.body.name || !req.body.description || req.body.completed === undefined  ){
         res.status(400).json({ error: `Name, description, and completed fields required` })
     } else {
         next();

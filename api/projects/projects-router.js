@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
         res.status(200).json(response)
     })
     .catch( err => {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ error: err.message });
     })
 
 })
@@ -36,33 +36,46 @@ router.post('/', validateProject, (req, res) => {
             res.status(201).json(response);
         })
         .catch( err => {
-            res.status(500).json({ message: err.message});
+            res.status(500).json({ error: err.message});
         })
 })
 
-
-// ***** WORKING *****
 router.put('/:id', validateProjectID, validateProject, (req, res) => {
     // - Returns the updated project as the body of the response.
     // - If there is no project with the given `id` it responds with a status code 404.
     // - If the request body is missing any of the required fields it responds with a status code 400.
-    res.status(200).json({ message: 'PUT update a project'});
+    Project.update(req.params.id, req.body)
+        .then( response => {
+            res.status(200).json(response)
+        })
+        .catch( err => {
+            res.status(500).json({error: err.message})
+        })
+
 })
 
-
-
-router.delete('/:id', (req, res) => {
+router.delete('/:id', validateProjectID, (req, res) => {
     // - Returns no response body.
     // - If there is no project with the given `id` it responds with a status code 404.
-    res.status(200).json({ message: 'DELETE a project'});
+    Project.remove(req.params.id)
+        .then( response => {
+            res.status(204);
+        })
+        .catch( err => {
+            res.status(500).json({ error: err.message});
+        })
 })
 
-
-
-router.get('/:id/actions', (req, res) => {
+router.get('/:id/actions', validateProjectID, (req, res) => {
     // - Returns an array of actions (could be empty) belonging to a project with the given `id`.
     // - If there is no project with the given `id` it responds with a status code 404.
-    res.status(200).json({ message: 'GET project actions'});
+    Project.getProjectActions(req.params.id)
+        .then( response => {
+            res.status(200).json(response)
+        })
+        .catch( err => {
+            res.status(500).json({ error: err.message })
+        })
 })
 
  module.exports = router;
