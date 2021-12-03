@@ -8,8 +8,8 @@ const projectsRouter = require('./projects/projects-router');
 // Build your projects router in /api/projects/projects-router.js
 // Do NOT `server.listen()` inside this file!
 server.use(express.json());
-// server.use('/api/projects', projectsRouter);
-// server.use('/api/actions', actionsRouter);
+server.use('/api/projects', projectsRouter);
+server.use('/api/actions', actionsRouter);
 
 server.get('*', (req, res) => {
     res.status(200).send('<h1>Hooray! You found us!!!</h1>')
