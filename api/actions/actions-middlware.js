@@ -9,7 +9,7 @@ function validateActionId (req, res, next) {
                 req.action = response;
                 next();
             } else {
-                res.status(404).json({ error: `No project with ID ${req.params.id} found` });
+                res.status(404).json({ error: `No action with ID ${req.params.id} found` });
             }
         })
         .catch( err => {
@@ -19,8 +19,12 @@ function validateActionId (req, res, next) {
 }
 
 function validateActionBody (req, res, next) {
-    console.log('### validateActionBody ###')
-    next();
+    //   - If the request body is missing any of the required fields it responds with a status code 400.
+    if (!req.body.project_id || ! req.body.description || !req.body.notes || req.body.completed === undefined){
+        res.status(400).json({ error: `Project ID, description, notes, and completed fields required`})
+    } else {
+        next();
+    }
 }
 
 module.exports = { validateActionId, validateActionBody }
