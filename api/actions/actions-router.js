@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 //   - Returns an action with the given `id` as the body of the response.
 //   - If there is no action with the given `id` it responds with a status code 404.
 router.get('/:id', (req, res) => {
-    res.status(200).json({ message: 'GET Actions by ID'});
+    res.status(200).json({ message: 'GET Action by ID'});
 })
 
 // - [ ] `[POST] /api/actions`
@@ -33,10 +33,15 @@ router.post('/', (req, res) => {
 //   - Returns the updated action as the body of the response.
 //   - If there is no action with the given `id` it responds with a status code 404.
 //   - If the request body is missing any of the required fields it responds with a status code 400.
-
+router.put('/:id', (req, res) => {
+    res.status(200).json({ message: 'UPDATE Action by ID'});
+})
 
 // - [ ] `[DELETE] /api/actions/:id`
 //   - Returns no response body.
 //   - If there is no action with the given `id` it responds with a status code 404.
+router.delete('/:id', (req, res) => {
+    res.status(200).json({ message: 'DELETE Action by ID'});
+})
 
 module.exports = router;
