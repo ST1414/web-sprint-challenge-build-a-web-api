@@ -26,11 +26,11 @@ router.get('/:id', validateActionId, (req, res) => {
     res.status(200).json(req.action);
 })
 
-// - [ ] `[POST] /api/actions`
-//   - Returns the newly created action as the body of the response.
-//   - If the request body is missing any of the required fields it responds with a status code 400.
-//   - When adding an action make sure the `project_id` provided belongs to an existing `project`.
 router.post('/', validateActionBody, validateActionProjectId, (req, res) => {
+    // - [ ] `[POST] /api/actions`
+    //   - Returns the newly created action as the body of the response.
+    //   - If the request body is missing any of the required fields it responds with a status code 400.
+    //   - When adding an action make sure the `project_id` provided belongs to an existing `project`.
     Action.insert(req.body)
         .then( response => {
             res.status(201).json(response);
@@ -40,20 +40,17 @@ router.post('/', validateActionBody, validateActionProjectId, (req, res) => {
         })
 })
 
-
-
-// ##### WORKING #####
-// - [ ] `[PUT] /api/actions/:id`
-//   - Returns the updated action as the body of the response.
-//   - If there is no action with the given `id` it responds with a status code 404.
-//   - If the request body is missing any of the required fields it responds with a status code 400.
 router.put('/:id', validateActionId, validateActionBody, validateActionProjectId, (req, res) => {
-    Action.put(req.body)
-        .then( resonse => {
-
+    // - [ ] `[PUT] /api/actions/:id`
+    //   - Returns the updated action as the body of the response.
+    //   - If there is no action with the given `id` it responds with a status code 404.
+    //   - If the request body is missing any of the required fields it responds with a status code 400.
+    Action.update(req.params.id, req.body)
+        .then( response => {
+            res.status(200).json(response);
         })
         .catch( err => {
-            res.status(500).json({ error: err.message})
+            res.status(500).json({ error: err.message});
         })
 })
 
