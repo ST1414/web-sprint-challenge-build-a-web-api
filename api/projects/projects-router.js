@@ -59,7 +59,7 @@ router.delete('/:id', validateProjectID, (req, res) => {
     // - If there is no project with the given `id` it responds with a status code 404.
     Project.remove(req.params.id)
         .then( response => {
-            res.status(204);
+            res.status(204).json();
         })
         .catch( err => {
             res.status(500).json({ error: err.message});
