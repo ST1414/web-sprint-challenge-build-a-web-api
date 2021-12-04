@@ -147,7 +147,28 @@ We have provided test data for all the resources.
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. The core features of Node.js and Express and why they are useful.
+  <!-- 
+    They use JS so the language is already well known
+    It is a single threaded language which remove complexity
+    It is asyc and maximizes processor us
+    Large npm repository
+    Allows us to build single page applications
+    Can build Restful web services w. JSON
+   -->
 1. Understand and explain the use of Middleware.
+  <!-- 
+    There are 3 types of middleware (built in, 3rd party, and custom).
+    Middleware allows us to leverage separation of concerns and improve code reusability
+   -->
 1. The basic principles of the REST architectural style.
+  <!-- 
+    Uniform interface guiding the behavior, client-server decoupling allows fo separation of concerns, statelessness which means the request need all the info necessary as the serve is not storing data related to the request, cacheability, and layered system architecture
+   -->
 1. Understand and explain the use of Express Routers.
+  <!-- 
+    Express routers are the part of the application which take action based on the URL the client has sent their request on, including the associated http method.  It's the routers job to take the appropriate action and provide a response to the client, either from the router module or another middleware function.
+   -->
 1. Describe tooling used to manually test the correctness of an API.
+  <!-- 
+    We utilized both Postman and HTTPie during the sprint.  Both allow requests to be sent to the server, where the request headers and body can be seen and understood for testing purposes.  Postman provided a GUI while HTTPie is for the command line.
+  -->
